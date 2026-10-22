@@ -9,12 +9,15 @@ import { toSummary } from "@/lib/commerce/adapter";
 import { useWishlistStore } from "@/lib/wishlist/store";
 import { useT } from "@/i18n/provider";
 
+/** Stable identity: returning a new [] here triggers React's infinite-loop guard. */
+const EMPTY_SLUGS: readonly string[] = [];
+
 export function WishlistView() {
   const t = useT();
   const slugs = useSyncExternalStore(
     useWishlistStore.subscribe,
     () => useWishlistStore.getState().slugs,
-    () => [],
+    () => EMPTY_SLUGS as string[],
   );
 
   // Saved slugs are resolved against the catalogue every render: a slug that no

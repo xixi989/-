@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/cn";
 import { withPreservedQuery } from "@/lib/commerce/url";
 import { useFormatUsdCents } from "@/lib/preferences/use-price";
+import { useT } from "@/i18n/provider";
 import {
   PRICE_BANDS,
   buildQuery,
@@ -31,6 +32,7 @@ export function FilterPanel({ filters, sort, colors, sizes }: FilterPanelProps) 
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
   const format = useFormatUsdCents();
+  const t = useT();
 
   function commit(next: ProductFilters) {
     const query = buildQuery(next, sort);
@@ -48,20 +50,20 @@ export function FilterPanel({ filters, sort, colors, sizes }: FilterPanelProps) 
       aria-busy={isPending}
     >
       <div className="flex items-center justify-between">
-        <p className="label text-ink">Filter</p>
+        <p className="label text-ink">{t("filter.title")}</p>
         {hasActive ? (
           <button
             type="button"
             onClick={() => commit({ colors: [], sizes: [], priceBands: [] })}
             className="label text-[0.6rem] text-stone underline decoration-line underline-offset-4 transition-colors hover:text-ink"
           >
-            Clear
+            {t("filter.clear")}
           </button>
         ) : null}
       </div>
 
       <fieldset className="mt-7 border-t border-line pt-6">
-        <legend className="label text-mist">Colour</legend>
+        <legend className="label text-mist">{t("filter.colour")}</legend>
         <ul className="mt-4 space-y-2.5">
           {colors.map((color) => {
             const checked = filters.colors.includes(color.slug);
@@ -98,7 +100,7 @@ export function FilterPanel({ filters, sort, colors, sizes }: FilterPanelProps) 
       </fieldset>
 
       <fieldset className="mt-8 border-t border-line pt-6">
-        <legend className="label text-mist">Size</legend>
+        <legend className="label text-mist">{t("filter.size")}</legend>
         <ul className="mt-4 flex flex-wrap gap-1.5">
           {sizes.map((size) => {
             const checked = filters.sizes.includes(size);
@@ -127,7 +129,7 @@ export function FilterPanel({ filters, sort, colors, sizes }: FilterPanelProps) 
       </fieldset>
 
       <fieldset className="mt-8 border-t border-line pt-6">
-        <legend className="label text-mist">Price</legend>
+        <legend className="label text-mist">{t("filter.price")}</legend>
         <ul className="mt-4 space-y-2.5">
           {PRICE_BANDS.map((band) => {
             const checked = filters.priceBands.includes(band.id);
@@ -168,7 +170,7 @@ export function FilterPanel({ filters, sort, colors, sizes }: FilterPanelProps) 
                     {band.max === null
                       ? `${format(band.min)}+`
                       : band.min === 0
-                        ? `Under ${format(band.max)}`
+                        ? t("filter.under", { amount: format(band.max) })
                         : `${format(band.min)} – ${format(band.max)}`}
                   </span>
                 </label>
@@ -179,7 +181,7 @@ export function FilterPanel({ filters, sort, colors, sizes }: FilterPanelProps) 
       </fieldset>
 
       <p className="mt-8 border-t border-line pt-6 text-[0.72rem] leading-relaxed text-mist">
-        Stock is live. Sold-out sizes cannot be added to the bag.
+        {t("filter.stockNote")}
       </p>
     </div>
   );

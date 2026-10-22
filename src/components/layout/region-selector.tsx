@@ -217,6 +217,7 @@ export function RegionSelector({ variant = "footer" }: { variant?: "header" | "f
           <div className="mt-7 space-y-3 border-t border-line pt-5">
             <p className="text-[0.7rem] leading-relaxed text-stone">{t("region.rateNotice")}</p>
             <p className="text-[0.7rem] leading-relaxed text-mist">{t("region.demoNotice")}</p>
+            <p className="text-[0.7rem] leading-relaxed text-mist">{t("region.localeNote")}</p>
           </div>
         </div>
       </div>

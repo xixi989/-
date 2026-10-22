@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { catalog, CATEGORY_LABELS } from "@/data/catalog";
+import { catalog, CATEGORY_LABELS, PHOTO_PENDING } from "@/data/catalog";
 import { collectionList } from "@/data/collections";
 import { CATEGORY_HANDLES, SIZE_CODES } from "@/types/commerce";
 
@@ -124,6 +124,49 @@ describe("photography and copy", () => {
     for (const product of catalog) {
       expect(Number.isNaN(Date.parse(product.releasedAt))).toBe(false);
       expect(product.releasedAt).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    }
+  });
+});
+
+describe("photography shows the product", () => {
+  // Only categories the title names outright. A "Wool Overcoat" is not asserted
+  // to show a coat close-up, but a "Bag" must actually contain a bag.
+  const CATEGORY_RULES: Array<{ title: RegExp; alt: RegExp }> = [
+    { title: /Bag/i, alt: /\b(bag|tote|weekender)\b/i },
+    { title: /Trouser/i, alt: /\b(trouser|jean|denim)\b/i },
+    { title: /Hat|Beanie/i, alt: /\b(hat|beanie|cap)\b/i },
+    { title: /Scarf/i, alt: /\bscarf\b/i },
+    { title: /Boot|Derby/i, alt: /\b(boots?|shoes?|derby)\b/i },
+    { title: /Dress/i, alt: /\bdress\b/i },
+  ];
+
+  it("uses a frame whose alt text names the product's category", () => {
+    for (const product of catalog) {
+      if (PHOTO_PENDING[product.slug]) continue;
+
+      for (const rule of CATEGORY_RULES) {
+        if (!rule.title.test(product.title)) continue;
+        const alt = product.colors[0].images[0].alt;
+        expect(rule.alt.test(alt), `${product.slug} primary alt: "${alt}"`).toBe(true);
+      }
+    }
+  });
+
+  it("never lists a product as photo-pending unless it is still a gap", () => {
+    for (const [slug, reason] of Object.entries(PHOTO_PENDING)) {
+      const product = catalog.find((entry) => entry.slug === slug);
+      expect(product, `${slug} is in PHOTO_PENDING but not in the catalogue`).toBeDefined();
+      expect(reason.length).toBeGreaterThan(10);
+      // A pending product must still ship an image; the gap is semantic, not missing.
+      expect(product?.colors[0].images.length).toBeGreaterThan(0);
+    }
+  });
+
+  it("gives every colourway at least one frame", () => {
+    for (const product of catalog) {
+      for (const color of product.colors) {
+        expect(color.images.length, `${product.slug}/${color.slug}`).toBeGreaterThan(0);
+      }
     }
   });
 });

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Check, X } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { usePrice } from "@/lib/preferences/use-price";
+import { usePrice, useFormatUsdCents } from "@/lib/preferences/use-price";
 import { useT } from "@/i18n/provider";
 import {
   findVariant,
@@ -16,6 +16,7 @@ import { useCartStore } from "@/lib/cart/store";
 import { lineFromVariant } from "@/lib/cart/lines";
 import type { Product, SizeCode } from "@/types/commerce";
 import { useUiStore } from "@/lib/ui/store";
+import { FREE_SHIPPING_THRESHOLD } from "@/lib/cart/logic";
 import { SizeGuide } from "./size-guide";
 
 /**
@@ -32,6 +33,7 @@ export function ProductView({ product }: { product: Product }) {
   const [added, setAdded] = useState(false);
   const addLine = useCartStore((state) => state.addLine);
   const price = usePrice();
+  const format = useFormatUsdCents();
   const t = useT();
   const openCart = useUiStore((state) => state.openCart);
 
@@ -245,7 +247,8 @@ export function ProductView({ product }: { product: Product }) {
             <div>
               <dt className="label text-mist">{t("pdp.delivery")}</dt>
               <dd className="mt-1.5 leading-relaxed text-stone">
-                Complimentary shipping over $150. Free returns within 30 days.
+                {t("pdp.shipFree", { amount: format(FREE_SHIPPING_THRESHOLD) })}{" "}
+                {t("pdp.freeReturns")}
               </dd>
             </div>
           </dl>

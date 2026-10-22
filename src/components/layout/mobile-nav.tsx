@@ -5,11 +5,13 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { primaryNav } from "@/data/site";
+import { useT } from "@/i18n/provider";
 import { useSyncExternalStore } from "react";
 import { usePreferences } from "@/lib/preferences/store";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const t = useT();
   const regionCountry = useSyncExternalStore(
     usePreferences.subscribe,
     () => usePreferences.getState().country,
@@ -45,7 +47,7 @@ export function MobileNav() {
         onClick={() => setOpen(true)}
         aria-expanded={open}
         aria-controls="mobile-nav"
-        aria-label="Open menu"
+        aria-label={t("nav.menu")}
         className="-ml-2 flex size-10 items-center justify-center text-ink"
       >
         <Menu className="size-5" strokeWidth={1.25} aria-hidden />
@@ -55,7 +57,7 @@ export function MobileNav() {
         id="mobile-nav"
         role="dialog"
         aria-modal="true"
-        aria-label="Menu"
+        aria-label={t("nav.menu")}
         inert={!open}
         className={cn(
           "fixed inset-0 z-[60] flex flex-col bg-bone transition-transform duration-500 ease-[var(--ease-editorial)] md:hidden",
@@ -80,13 +82,13 @@ export function MobileNav() {
         >
           <ul className="divide-y divide-line">
             {primaryNav.map((item) => (
-              <li key={item.label} className="py-5">
+              <li key={item.href} className="py-5">
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className="display block text-[2rem] leading-none text-ink"
                 >
-                  {item.label}
+                  {t(item.labelKey)}
                 </Link>
 
                 {item.groups ? (
@@ -98,7 +100,7 @@ export function MobileNav() {
                           onClick={() => setOpen(false)}
                           className="text-[0.8rem] text-stone"
                         >
-                          {link.label}
+                          {t(link.labelKey)}
                         </Link>
                       </li>
                     ))}
@@ -114,8 +116,8 @@ export function MobileNav() {
             <span className="label text-mist">
               {regionCountry} · {regionCurrency}
             </span>
-            <Link href="/account" className="label text-ink">
-              Sign in
+            <Link href="/wishlist" className="label text-ink">
+              {t("nav.wishlist")}
             </Link>
           </div>
         </div>

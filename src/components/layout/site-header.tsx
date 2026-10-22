@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { primaryNav } from "@/data/site";
+import { useFormatUsdCents } from "@/lib/preferences/use-price";
+import { useT } from "@/i18n/provider";
 import { CartButton } from "./cart-button";
 import { RegionSelector } from "./region-selector";
 import { SearchTrigger } from "./search-trigger";
@@ -8,35 +12,37 @@ import { WishlistLink } from "./wishlist-link";
 import { MobileNav } from "./mobile-nav";
 
 /**
- * Server component by default: the mega menu is pure CSS (hover + focus-within),
- * so only the mobile drawer needs to ship client JavaScript.
+ * Client component so the navigation can be translated: labels come from the
+ * dictionary by key, and the price-band link interpolates the live display
+ * currency instead of a hard-coded "$100".
  */
 export function SiteHeader() {
+  const t = useT();
+  const format = useFormatUsdCents();
+
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-bone">
       <Container className="relative">
         <div className="grid h-16 grid-cols-[1fr_auto_1fr] items-center md:h-[76px]">
           {/* Left — desktop navigation */}
           <div className="hidden md:block">
-            <nav aria-label="Primary">
+            <nav aria-label={t("nav.primary")}>
               <ul className="flex h-full items-stretch gap-7">
                 {primaryNav.map((item) => (
-                  <li key={item.label} className="group flex items-center">
+                  <li key={item.href} className="group flex items-center">
                     <Link
                       href={item.href}
                       className="label py-2 text-ink/75 transition-colors duration-300 hover:text-ink group-focus-within:text-ink"
                     >
-                      {item.label}
+                      {t(item.labelKey)}
                     </Link>
 
                     {item.groups ? (
-                      <div
-                        className="pointer-events-none invisible absolute inset-x-0 top-full z-40 translate-y-[-6px] border-b border-line bg-bone opacity-0 transition-[opacity,transform] duration-300 ease-[var(--ease-editorial)] group-hover:pointer-events-auto group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
-                      >
+                      <div className="pointer-events-none invisible absolute inset-x-0 top-full z-40 translate-y-[-6px] border-b border-line bg-bone opacity-0 transition-[opacity,transform] duration-300 ease-[var(--ease-editorial)] group-hover:pointer-events-auto group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
                         <Container className="grid grid-cols-[1fr_1fr_1.4fr] gap-10 py-12">
                           {item.groups.map((group) => (
-                            <div key={group.title}>
-                              <p className="label text-mist">{group.title}</p>
+                            <div key={group.titleKey}>
+                              <p className="label text-mist">{t(group.titleKey)}</p>
                               <ul className="mt-5 space-y-3">
                                 {group.links.map((link) => (
                                   <li key={link.href}>
@@ -44,7 +50,9 @@ export function SiteHeader() {
                                       href={link.href}
                                       className="text-[0.9rem] text-ink/80 transition-colors duration-200 hover:text-ink"
                                     >
-                                      {link.label}
+                                      {link.priceAmount
+                                        ? t(link.labelKey, { amount: format(link.priceAmount) })
+                                        : t(link.labelKey)}
                                     </Link>
                                   </li>
                                 ))}
@@ -53,17 +61,15 @@ export function SiteHeader() {
                           ))}
 
                           <div className="border-l border-line pl-10">
-                            <p className="label text-mist">Featured</p>
-                            <p className="display mt-5 text-3xl">
-                              The AW26
-                              <br />
-                              atelier notes
+                            <p className="label text-mist">{t("nav.featured")}</p>
+                            <p className="display mt-5 text-3xl whitespace-pre-line">
+                              {t("nav.storyTitle")}
                             </p>
                             <Link
-                              href="/editorial"
+                              href="/journal"
                               className="label mt-6 inline-block border-b border-ink pb-1 text-ink"
                             >
-                              Read the story
+                              {t("nav.readStory")}
                             </Link>
                           </div>
                         </Container>

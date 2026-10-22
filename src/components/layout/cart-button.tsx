@@ -4,6 +4,7 @@ import { useSyncExternalStore } from "react";
 import { ShoppingBag } from "lucide-react";
 import { cartCount, useCartStore } from "@/lib/cart/store";
 import { useUiStore } from "@/lib/ui/store";
+import { useT } from "@/i18n/provider";
 
 /**
  * Persisted carts rehydrate on the client, so the count cannot be read during
@@ -12,6 +13,7 @@ import { useUiStore } from "@/lib/ui/store";
  */
 export function CartButton() {
   const openCart = useUiStore((state) => state.openCart);
+  const t = useT();
   const count = useSyncExternalStore(
     useCartStore.subscribe,
     () => cartCount(useCartStore.getState().lines),
@@ -22,7 +24,7 @@ export function CartButton() {
     <button
       type="button"
       onClick={openCart}
-      aria-label={`Shopping bag, ${count} ${count === 1 ? "item" : "items"}`}
+      aria-label={t("cart.bagLabel", { n: count })}
       aria-haspopup="dialog"
       className="flex h-10 items-center gap-2 pl-2 text-ink/80 transition-colors hover:text-ink"
     >

@@ -6,6 +6,7 @@ import { EmptyState } from "@/components/collection/empty-state";
 import { FilterPanel } from "@/components/collection/filter-panel";
 import { ProductGrid } from "@/components/collection/product-grid";
 import { Container } from "@/components/ui/container";
+import { SearchHeading } from "@/components/search/search-heading";
 import { collectionList } from "@/data/collections";
 import { toSummary } from "@/lib/commerce/adapter";
 import { colorFacets, filterAndSort, parseFilters, parseSort, sizeFacets } from "@/lib/commerce/filters";
@@ -52,16 +53,7 @@ async function SearchResults({ searchParams }: PageProps) {
 
   return (
     <>
-      <header className="mt-8 max-w-[62ch] md:mt-12">
-        <h1 className="display text-[clamp(2rem,5vw,3.75rem)] text-ink">
-          {query ? `“${query}”` : "Search"}
-        </h1>
-        <p className="mt-5 text-[0.9rem] leading-relaxed text-stone">
-          {query
-            ? `${matched.length} ${matched.length === 1 ? "result" : "results"} across the collection.`
-            : "Search by piece, fabric or category. Everything in the catalogue is indexed locally."}
-        </p>
-      </header>
+      <SearchHeading query={query} count={matched.length} />
 
       {!query ? (
         <div className="mt-10 border-t border-line pt-8">

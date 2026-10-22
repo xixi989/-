@@ -16,6 +16,8 @@ const en = {
   "nav.knitwear": "Knitwear",
   "nav.outerwear": "Outerwear",
   "nav.accessories": "Accessories",
+  "nav.shirts": "Shirts",
+  "nav.trousers": "Trousers",
   "nav.search": "Search",
   "nav.wishlist": "Wishlist",
   "nav.bag": "Bag",
@@ -85,6 +87,7 @@ const en = {
     "Tap the heart on any piece to keep it here — it stays on this device, no account needed.",
   "wishlist.saved": "{n} pieces saved",
   "wishlist.savedOne": "{n} piece saved",
+  "wishlist.linkLabel": "Wishlist, {n} items",
   "wishlist.remove": "Remove {title} from wishlist",
   "wishlist.save": "Save {title} to wishlist",
   "wishlist.browse": "Browse the collection",
@@ -112,6 +115,8 @@ const en = {
     "Reference prices converted from USD at a demonstration rate. Not a live market rate.",
   "region.demoNotice":
     "Region only changes how prices are shown. Shipping, duties and local payment are not configured in this demo.",
+  "region.localeNote":
+    "German is an interface preview. Pages keep their English URLs, so there is no separate German site to index.",
 
   // Footer
   "footer.shop": "Shop",
@@ -119,6 +124,53 @@ const en = {
   "footer.studio": "Studio",
   "footer.sizeGuide": "Size guide",
   "footer.allPieces": "All pieces",
+  // Navigation chrome
+  "nav.menu": "Menu",
+  "nav.primary": "Primary",
+  "nav.clothing": "Clothing",
+  "nav.shopBy": "Shop by",
+  "nav.allWomen": "All Women's",
+  "nav.allMen": "All Men's",
+  "nav.newArrivals": "New Arrivals",
+  "nav.bestSellers": "Best Sellers",
+  "nav.underAmount": "Under {amount}",
+  "nav.featured": "Featured",
+  "nav.storyTitle": "The AW26\natelier notes",
+  "nav.readStory": "Read the story",
+
+  // Announcement
+  "announce.shipping": "Complimentary shipping on orders over {amount}",
+
+  // Filter rail
+  "filter.title": "Filter",
+  "filter.colour": "Colour",
+  "filter.size": "Size",
+  "filter.price": "Price",
+  "filter.clear": "Clear",
+  "filter.under": "Under {amount}",
+  "filter.stockNote": "Stock is live. Sold-out sizes cannot be added to the bag.",
+
+  // Product detail extras
+  "pdp.shipFree": "Complimentary shipping on orders over {amount}.",
+  "pdp.shipDispatch": "Dispatched within 1–2 working days from the studio.",
+  "pdp.shipReturns": "Free returns within 30 days, unworn and with tags attached.",
+  "pdp.freeReturns": "Free returns within 30 days.",
+
+  // Footer links
+  "footer.shipping": "Shipping",
+  "footer.returns": "Returns",
+  "footer.contact": "Contact",
+  "footer.privacy": "Privacy",
+  "footer.terms": "Terms",
+  "footer.cookies": "Cookies",
+  "footer.accessibility": "Accessibility",
+
+  // Search page
+  "search.pageTitle": "Search",
+  "search.pageIntro":
+    "Search by piece, fabric or category. Everything in the catalogue is indexed locally.",
+  "search.resultsAcross": "{n} results across the collection.",
+
   "footer.rights": "All rights reserved.",
 } as const;
 
@@ -132,6 +184,8 @@ const de: Dictionary = {
   "nav.knitwear": "Strick",
   "nav.outerwear": "Jacken & Mäntel",
   "nav.accessories": "Accessoires",
+  "nav.shirts": "Hemden",
+  "nav.trousers": "Hosen",
   "nav.search": "Suche",
   "nav.wishlist": "Merkliste",
   "nav.bag": "Warenkorb",
@@ -197,6 +251,7 @@ const de: Dictionary = {
     "Tippen Sie bei einem Teil auf das Herz — es bleibt auf diesem Gerät, ohne Konto.",
   "wishlist.saved": "{n} gespeicherte Teile",
   "wishlist.savedOne": "{n} gespeichertes Teil",
+  "wishlist.linkLabel": "Merkliste, {n} Artikel",
   "wishlist.remove": "{title} von der Merkliste entfernen",
   "wishlist.save": "{title} zur Merkliste hinzufügen",
   "wishlist.browse": "Kollektion ansehen",
@@ -222,12 +277,55 @@ const de: Dictionary = {
     "Referenzpreise, aus USD zu einem Demo-Kurs umgerechnet. Kein tagesaktueller Marktkurs.",
   "region.demoNotice":
     "Die Region ändert nur die Anzeige der Preise. Versand, Zoll und lokale Zahlung sind in dieser Demo nicht eingerichtet.",
+  "region.localeNote":
+    "Deutsch ist eine Vorschau der Oberfläche. Die Seiten behalten ihre englischen URLs; es gibt keine eigene deutsche Website.",
 
   "footer.shop": "Shop",
   "footer.clientCare": "Kundenservice",
   "footer.studio": "Studio",
   "footer.sizeGuide": "Größentabelle",
   "footer.allPieces": "Alle Teile",
+  "nav.menu": "Menü",
+  "nav.primary": "Hauptnavigation",
+  "nav.clothing": "Bekleidung",
+  "nav.shopBy": "Nach",
+  "nav.allWomen": "Alle Damen",
+  "nav.allMen": "Alle Herren",
+  "nav.newArrivals": "Neuheiten",
+  "nav.bestSellers": "Bestseller",
+  "nav.underAmount": "Unter {amount}",
+  "nav.featured": "Empfohlen",
+  "nav.storyTitle": "Die Atelier-Notizen\nAW26",
+  "nav.readStory": "Geschichte lesen",
+
+  "announce.shipping": "Kostenloser Versand ab {amount}",
+
+  "filter.title": "Filter",
+  "filter.colour": "Farbe",
+  "filter.size": "Größe",
+  "filter.price": "Preis",
+  "filter.clear": "Zurücksetzen",
+  "filter.under": "Unter {amount}",
+  "filter.stockNote": "Der Bestand ist live. Ausverkaufte Größen lassen sich nicht hinzufügen.",
+
+  "pdp.shipFree": "Kostenloser Versand ab {amount}.",
+  "pdp.shipDispatch": "Versand innerhalb von 1–2 Werktagen aus dem Studio.",
+  "pdp.shipReturns": "Kostenlose Rückgabe innerhalb von 30 Tagen, ungetragen und mit Etikett.",
+  "pdp.freeReturns": "Kostenlose Rückgabe innerhalb von 30 Tagen.",
+
+  "footer.shipping": "Versand",
+  "footer.returns": "Rückgabe",
+  "footer.contact": "Kontakt",
+  "footer.privacy": "Datenschutz",
+  "footer.terms": "AGB",
+  "footer.cookies": "Cookies",
+  "footer.accessibility": "Barrierefreiheit",
+
+  "search.pageTitle": "Suche",
+  "search.pageIntro":
+    "Suchen Sie nach Teil, Stoff oder Kategorie. Der gesamte Katalog ist lokal indexiert.",
+  "search.resultsAcross": "{n} Ergebnisse in der Kollektion.",
+
   "footer.rights": "Alle Rechte vorbehalten.",
 };
 

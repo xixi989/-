@@ -1,15 +1,24 @@
+import type { DictionaryKey } from "@/i18n/dictionaries";
+
+/**
+ * Navigation and footer content is labelled by dictionary key, not by string.
+ * The components translate at render time, so switching language changes the
+ * chrome without duplicating this data per locale.
+ */
 export interface NavLink {
-  label: string;
   href: string;
+  labelKey: DictionaryKey;
+  /** USD minor units interpolated into the label (price-band links). */
+  priceAmount?: number;
 }
 
 export interface NavGroup {
-  title: string;
+  titleKey: DictionaryKey;
   links: NavLink[];
 }
 
 export interface NavItem {
-  label: string;
+  labelKey: DictionaryKey;
   href: string;
   /** Present on Women / Men only — drives the desktop mega menu. */
   groups?: NavGroup[];
@@ -18,106 +27,123 @@ export interface NavItem {
 /** Every href here resolves to a real route or a real filtered view. */
 export const primaryNav: NavItem[] = [
   {
-    label: "Women",
+    labelKey: "nav.women",
     href: "/collections/women",
     groups: [
       {
-        title: "Clothing",
+        titleKey: "nav.clothing",
         links: [
-          { label: "All Women's", href: "/collections/women" },
-          { label: "Knitwear", href: "/collections/knitwear" },
-          { label: "Shirts", href: "/collections/shirts" },
-          { label: "Trousers", href: "/collections/trousers" },
-          { label: "Outerwear", href: "/collections/outerwear" },
+          { labelKey: "nav.allWomen", href: "/collections/women" },
+          { labelKey: "nav.knitwear", href: "/collections/knitwear" },
+          { labelKey: "nav.shirts", href: "/collections/shirts" },
+          { labelKey: "nav.trousers", href: "/collections/trousers" },
+          { labelKey: "nav.outerwear", href: "/collections/outerwear" },
         ],
       },
       {
-        title: "Shop by",
+        titleKey: "nav.shopBy",
         links: [
-          { label: "New Arrivals", href: "/collections/women?sort=newest" },
-          { label: "Best Sellers", href: "/collections/women?sort=featured" },
-          { label: "Under $100", href: "/collections/women?price=under-100" },
-          { label: "Accessories", href: "/collections/accessories" },
+          { labelKey: "nav.newArrivals", href: "/collections/women?sort=newest" },
+          { labelKey: "nav.bestSellers", href: "/collections/women?sort=featured" },
+          {
+            labelKey: "nav.underAmount",
+            href: "/collections/women?price=under-100",
+            priceAmount: 10000,
+          },
+          { labelKey: "nav.accessories", href: "/collections/accessories" },
         ],
       },
     ],
   },
   {
-    label: "Men",
+    labelKey: "nav.men",
     href: "/collections/men",
     groups: [
       {
-        title: "Clothing",
+        titleKey: "nav.clothing",
         links: [
-          { label: "All Men's", href: "/collections/men" },
-          { label: "Knitwear", href: "/collections/knitwear" },
-          { label: "Shirts", href: "/collections/shirts" },
-          { label: "Trousers", href: "/collections/trousers" },
-          { label: "Outerwear", href: "/collections/outerwear" },
+          { labelKey: "nav.allMen", href: "/collections/men" },
+          { labelKey: "nav.knitwear", href: "/collections/knitwear" },
+          { labelKey: "nav.shirts", href: "/collections/shirts" },
+          { labelKey: "nav.trousers", href: "/collections/trousers" },
+          { labelKey: "nav.outerwear", href: "/collections/outerwear" },
         ],
       },
       {
-        title: "Shop by",
+        titleKey: "nav.shopBy",
         links: [
-          { label: "New Arrivals", href: "/collections/men?sort=newest" },
-          { label: "Best Sellers", href: "/collections/men?sort=featured" },
-          { label: "Under $100", href: "/collections/men?price=under-100" },
-          { label: "Accessories", href: "/collections/accessories" },
+          { labelKey: "nav.newArrivals", href: "/collections/men?sort=newest" },
+          { labelKey: "nav.bestSellers", href: "/collections/men?sort=featured" },
+          {
+            labelKey: "nav.underAmount",
+            href: "/collections/men?price=under-100",
+            priceAmount: 10000,
+          },
+          { labelKey: "nav.accessories", href: "/collections/accessories" },
         ],
       },
     ],
   },
-  { label: "Knitwear", href: "/collections/knitwear" },
-  { label: "Outerwear", href: "/collections/outerwear" },
-  { label: "Accessories", href: "/collections/accessories" },
+  { labelKey: "nav.knitwear", href: "/collections/knitwear" },
+  { labelKey: "nav.outerwear", href: "/collections/outerwear" },
+  { labelKey: "nav.accessories", href: "/collections/accessories" },
 ];
 
 export interface FooterColumn {
-  title: string;
+  titleKey: DictionaryKey;
   links: NavLink[];
 }
 
 export const footerColumns: FooterColumn[] = [
   {
-    title: "Shop",
+    titleKey: "footer.shop",
     links: [
-      { label: "Women", href: "/collections/women" },
-      { label: "Men", href: "/collections/men" },
-      { label: "Knitwear", href: "/collections/knitwear" },
-      { label: "Accessories", href: "/collections/accessories" },
+      { labelKey: "nav.women", href: "/collections/women" },
+      { labelKey: "nav.men", href: "/collections/men" },
+      { labelKey: "nav.knitwear", href: "/collections/knitwear" },
+      { labelKey: "nav.accessories", href: "/collections/accessories" },
     ],
   },
   {
-    title: "Client Care",
+    titleKey: "footer.clientCare",
     links: [
-      { label: "Shipping", href: "/shipping" },
-      { label: "Returns", href: "/returns" },
-      { label: "Size guide", href: "/faq" },
-      { label: "Contact", href: "/contact" },
+      { labelKey: "footer.shipping", href: "/shipping" },
+      { labelKey: "footer.returns", href: "/returns" },
+      { labelKey: "footer.sizeGuide", href: "/faq" },
+      { labelKey: "footer.contact", href: "/contact" },
     ],
   },
   {
-    title: "Studio",
+    titleKey: "footer.studio",
     links: [
-      { label: "Outerwear", href: "/collections/outerwear" },
-      { label: "Shirts", href: "/collections/shirts" },
-      { label: "Trousers", href: "/collections/trousers" },
-      { label: "All pieces", href: "/collections/women" },
+      { labelKey: "nav.outerwear", href: "/collections/outerwear" },
+      { labelKey: "nav.shirts", href: "/collections/shirts" },
+      { labelKey: "nav.trousers", href: "/collections/trousers" },
+      { labelKey: "footer.allPieces", href: "/collections/women" },
     ],
   },
 ];
 
 export const legalLinks: NavLink[] = [
-  { label: "Privacy", href: "/privacy" },
-  { label: "Terms", href: "/terms" },
-  { label: "Cookies", href: "/cookies" },
-  { label: "Accessibility", href: "/accessibility" },
+  { labelKey: "footer.privacy", href: "/privacy" },
+  { labelKey: "footer.terms", href: "/terms" },
+  { labelKey: "footer.cookies", href: "/cookies" },
+  { labelKey: "footer.accessibility", href: "/accessibility" },
 ];
 
-export const announcements: string[] = [
-  "Complimentary shipping on orders over $150 — United States, United Kingdom & EU",
-  "Autumn Winter 2026 — the first drop is now in store",
-];
+export interface FooterBrand {
+  name: string;
+  tagline: string;
+  blurb: string;
+}
+
+/** Brand copy is content, not chrome — it stays in one language on purpose. */
+export const footerBrand: FooterBrand = {
+  name: "Aurel Studio",
+  tagline: "Designed for the way you live.",
+  blurb:
+    "A small studio making fewer, better clothes — cut in natural fibres and finished by hand in limited runs.",
+};
 
 /**
  * Static, not `new Date().getFullYear()`: the site is fully prerendered, and a

@@ -74,11 +74,15 @@ publishes `priceCurrency: "USD"` regardless of what the shopper is viewing.
 suggested currency. It does not claim local stock, local shipping, duty handling or local
 payment, and the dialog says so.
 
-**English is the only indexed language.** The German UI is a real, typed translation of the
-interface (not a label swap), but it has no URLs of its own — so there is no `hreflang`
-anywhere. Faking alternate URLs for a language without pages would be a lie to crawlers.
-English stays in the SSR markup; the German switch applies after hydration and updates
-`<html lang>` on the client.
+**English is the only indexed language — German is a UI preview.** The German strings are a
+real, typed translation of the interface (navigation, footer, filters, product actions, cart,
+wishlist, search, region dialog), and prices reformat to German conventions (`118,50 £`). But
+there is no `/de` route: the language lives in local storage, applies after hydration and
+updates `<html lang>` on the client. Because no German URL exists, the site emits no
+`hreflang` — announcing a German alternate for a page that has no German URL would be a lie
+to crawlers. A real German launch needs `app/[locale]` plus server-side dictionaries; the
+typed dictionary and the switch already exist, only the routing layer is missing. The region
+dialog says this in plain language.
 
 **Canonical is per page, never in the root layout.** A root canonical would make every
 product claim to be the homepage. Collection views always canonicalise to the unfiltered
@@ -90,6 +94,38 @@ or `priceValidUntil` — inventing them would be worse than having no rich resul
 
 **Robots does not hide the noindex pages.** `/cart`, `/wishlist` and `/search` are crawlable
 so the `noindex` meta is readable; `Disallow` would hide them without ever removing them.
+
+## QA pass (post-phase-4)
+
+An external audit raised 8 P2 findings. All were re-checked against the code first; none had
+been fixed already. Current state:
+
+| ID | Issue | State |
+|---|---|---|
+| P2-01 | Product photography not matching the product | **Partial** — 4 mappings corrected, 5 documented in `PRODUCT_IMAGE_AUDIT.md`, regression test added |
+| P2-02 | Currency not applied to copy (`$150`, `Under $100`) | **Fixed** — every amount goes through `useFormatUsdCents` |
+| P2-03 | Search dialog prices stuck in USD | **Fixed** |
+| P2-04 | Wishlist `getServerSnapshot` infinite-loop warning | **Fixed** — stable module-level empty array |
+| P2-05 | German coverage gaps + `€66.24` formatting | **Fixed** — nav, footer, filters, search, PDP, aria-labels, `de-DE` numbers |
+| P2-06 | No `/de` routes | **Documented** — German is a UI preview; stated in the region dialog and here. Routing deferred rather than faked |
+| P2-07 | 10 dead links | **Fixed** — 9 content pages built (`/journal`, `/shipping`, `/returns`, `/faq`, `/contact`, `/privacy`, `/terms`, `/cookies`, `/accessibility`); `/account` removed from the mobile menu |
+| P2-08 | Soft 404 + conflicting robots on the 404 page | **Partial** — robots conflict fixed, HTTP status documented as a PPR limitation |
+
+## QA pass (post-phase-4)
+
+An external audit raised 8 P2 findings. All were re-checked against the code first; none had
+been fixed already. Current state:
+
+| ID | Issue | State |
+|---|---|---|
+| P2-01 | Product photography not matching the product | **Partial** — 4 mappings corrected, 5 documented in `PRODUCT_IMAGE_AUDIT.md`, regression test added |
+| P2-02 | Currency not applied to copy (`$150`, `Under $100`) | **Fixed** — every amount goes through `useFormatUsdCents` |
+| P2-03 | Search dialog prices stuck in USD | **Fixed** |
+| P2-04 | Wishlist `getServerSnapshot` infinite-loop warning | **Fixed** — stable module-level empty array |
+| P2-05 | German coverage gaps + `€66.24` formatting | **Fixed** — nav, footer, filters, search, PDP, aria-labels, `de-DE` numbers |
+| P2-06 | No `/de` routes | **Documented** — German is a UI preview; stated in the region dialog and here. Routing deferred rather than faked |
+| P2-07 | 10 dead links | **Fixed** — 9 content pages built (`/journal`, `/shipping`, `/returns`, `/faq`, `/contact`, `/privacy`, `/terms`, `/cookies`, `/accessibility`); `/account` removed from the mobile menu |
+| P2-08 | Soft 404 + conflicting robots on the 404 page | **Partial** — robots conflict fixed, HTTP status documented as a PPR limitation |
 
 ## Verification (actually run)
 
@@ -118,8 +154,12 @@ JSON-LD stays in USD and nothing overflows at 375px.
   merchandising content; only interface strings are translated.
 - **Variant URLs.** Colour/size are client state, not URL parameters, so one `Product` with
   an offer list is used instead of `ProductGroup`/`hasVariant`.
-- **404 status codes.** With Cache Components (PPR), `notFound()` inside a dynamic route
-  streams the 404 page with HTTP 200. Static unknown routes still return 404.
+- **404 status codes.** With Cache Components (PPR), the first request for an unknown
+  `/products/` or `/collections/` slug streams the shell with HTTP 200 and the 404 body; the
+  second request returns 404 from cache. `export const dynamic` and `dynamicParams` are both
+  rejected by `cacheComponents`, and `instant = false` does not change the first status, so
+  this is left as a documented trade-off of PPR rather than papered over. The 404 page's
+  contradictory robots tags *were* fixed: it now emits a single `noindex`.
 - **Photography** is free stock (Burst by Shopify), disclosed in `public/images/CREDITS.md`.
 - **Footer info pages** (`/shipping`, `/faq`, …) are linked but not built.
 

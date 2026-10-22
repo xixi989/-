@@ -350,8 +350,8 @@ const SPECS: ProductSpec[] = [
     tags: ["dresses", "silk", "evening"],
     price: 24500,
     colors: [
-      { name: "Ink", slug: "ink", hex: "#1B1A15", photos: ["dressSky", "knitWoman"] },
-      { name: "Oyster", slug: "oyster", hex: "#DCD5C6", photos: ["knitWoman", "dressSky"] },
+      { name: "Ink", slug: "ink", hex: "#1B1A15", photos: ["dressSky"] },
+      { name: "Oyster", slug: "oyster", hex: "#DCD5C6", photos: ["dressSky"] },
     ],
     material: "62% silk, 38% LENZING™ ECOVERO™ viscose",
     care: ["Dry clean only", "Steam to release creases", "Store on a padded hanger"],
@@ -466,7 +466,7 @@ const SPECS: ProductSpec[] = [
     tags: ["hat", "straw", "summer"],
     price: 4500,
     colors: [
-      { name: "Natural", slug: "natural", hex: "#D5C6A5", photos: ["hatWoman", "summerWoman"] },
+      { name: "Natural", slug: "natural", hex: "#D5C6A5", photos: ["summerWoman", "hatWoman"] },
     ],
     sizes: ["S", "M", "L"],
     material: "100% paper straw, cotton band",
@@ -565,8 +565,8 @@ const SPECS: ProductSpec[] = [
     tags: ["trousers", "wool", "tailoring"],
     price: 15500,
     colors: [
-      { name: "Charcoal", slug: "charcoal", hex: "#3A3833", photos: ["derbyShoes", "bootsCurb"] },
-      { name: "Stone", slug: "stone", hex: "#B9B2A2", photos: ["bootsCurb", "derbyShoes"] },
+      { name: "Charcoal", slug: "charcoal", hex: "#3A3833", photos: ["bootsCurb", "derbyShoes"] },
+      { name: "Stone", slug: "stone", hex: "#B9B2A2", photos: ["derbyShoes", "bootsCurb"] },
     ],
     material: "100% tropical wool",
     care: ["Dry clean only", "Press with a damp cloth", "Hang from the cuffs"],
@@ -645,8 +645,8 @@ const SPECS: ProductSpec[] = [
     tags: ["quilted", "jacket", "layer"],
     price: 24500,
     colors: [
-      { name: "Graphite", slug: "graphite", hex: "#4A4741", photos: ["blackJacket", "leatherJacket"] },
-      { name: "Stone", slug: "stone", hex: "#B9B2A2", photos: ["leatherJacket", "blackJacket"] },
+      { name: "Graphite", slug: "graphite", hex: "#4A4741", photos: ["blackJacket"] },
+      { name: "Stone", slug: "stone", hex: "#B9B2A2", photos: ["blackJacket"] },
     ],
     material: "Recycled polyamide shell, recycled polyester fill",
     care: ["Machine wash cold, gentle", "Tumble dry low to loft", "Do not iron"],
@@ -752,6 +752,25 @@ const SPECS: ProductSpec[] = [
     releasedAt: "2026-09-15",
   },
 ];
+
+/**
+ * Photography that does not show the product's own category.
+ *
+ * The asset library is free stock with 23 usable frames for 25 products, and it
+ * has no bag, linen trouser, beanie or scarf photography at all. Rather than
+ * repeat one generic image across several products (worse than an honest gap),
+ * these are flagged here and listed in PRODUCT_IMAGE_AUDIT.md.
+ *
+ * The image test in catalog.test.ts exempts exactly this list — remove a slug
+ * from it only when a real photograph for that product exists.
+ */
+export const PHOTO_PENDING: Record<string, string> = {
+  "canvas-weekender-bag": "Needs a bag frame; the current images show a person, no bag.",
+  "linen-wide-leg-trouser": "Needs a linen trouser frame; current frames show denim and boots.",
+  "pleated-wool-trouser": "Needs a tailored wool trouser frame; current frames show jeans and footwear.",
+  "ribbed-wool-beanie": "Needs a knit beanie frame; the current frame is a wide-brim felt hat.",
+  "merino-scarf": "Needs a scarf frame; the current frame is a studio portrait.",
+};
 
 export const catalog: Product[] = SPECS.map(buildProduct);
 

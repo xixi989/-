@@ -9,7 +9,7 @@ import { cn } from "@/lib/cn";
 import { catalog } from "@/data/catalog";
 import { CATEGORY_LABELS } from "@/data/catalog";
 import { SEARCH_SUGGESTIONS, searchProducts } from "@/lib/commerce/search";
-import { formatMoney } from "@/lib/format";
+import { usePrice } from "@/lib/preferences/use-price";
 import { useUiStore } from "@/lib/ui/store";
 import { useT } from "@/i18n/provider";
 
@@ -21,6 +21,7 @@ export function SearchDialog() {
   const [query, setQuery] = useState("");
   const deferredQuery = useDeferredValue(query);
   const inputRef = useRef<HTMLInputElement>(null);
+  const price = usePrice();
   const restoreRef = useRef<HTMLElement | null>(null);
 
   const matches = useMemo(() => searchProducts(catalog, deferredQuery), [deferredQuery]);
@@ -177,7 +178,7 @@ export function SearchDialog() {
                           </span>
                         </span>
                         <span className="tnum shrink-0 text-[0.85rem] text-ink">
-                          {formatMoney(product.price)}
+                          {price(product.price)}
                         </span>
                       </Link>
                     </li>

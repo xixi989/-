@@ -50,10 +50,10 @@ export const metadata: Metadata = {
   creator: site.legalName,
   publisher: site.legalName,
   formatDetection: { telephone: false, address: false, email: false },
-  // A portfolio demo stays out of search results unless a real domain is wired up.
-  robots: indexingEnabled
-    ? { index: true, follow: true }
-    : { index: false, follow: false, nocache: true },
+  // Indexable pages need no robots tag at all (indexing is the default), and
+  // omitting it keeps the 404 page free of a contradictory "index, follow".
+  // A demo deployment still opts out site-wide here.
+  ...(indexingEnabled ? {} : { robots: { index: false, follow: false, nocache: true } }),
   openGraph: {
     type: "website",
     siteName: site.name,

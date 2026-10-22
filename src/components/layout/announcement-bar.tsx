@@ -1,17 +1,25 @@
-import { Container } from "@/components/ui/container";
-import { announcements } from "@/data/site";
+"use client";
 
+import { Container } from "@/components/ui/container";
+import { FREE_SHIPPING_THRESHOLD } from "@/lib/cart/logic";
+import { useFormatUsdCents } from "@/lib/preferences/use-price";
+import { useT } from "@/i18n/provider";
+
+/**
+ * The threshold is one constant (USD minor units), formatted into whatever
+ * currency is being browsed. It is a demonstration threshold — nothing here
+ * promises a real delivery service.
+ */
 export function AnnouncementBar() {
+  const t = useT();
+  const format = useFormatUsdCents();
+
   return (
     <div className="bg-ink text-bone">
       <Container>
         <div className="flex h-9 items-center justify-center overflow-hidden">
-          {/* Short form on phones so the line never truncates mid-word. */}
-          <p className="label text-[0.65rem] text-bone/90 md:hidden">
-            Complimentary shipping over $150
-          </p>
-          <p className="label hidden truncate text-[0.65rem] text-bone/90 md:block">
-            {announcements[0]}
+          <p className="label truncate text-[0.6rem] text-bone/85 md:text-[0.65rem]">
+            {t("announce.shipping", { amount: format(FREE_SHIPPING_THRESHOLD) })}
           </p>
         </div>
       </Container>
