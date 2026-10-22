@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   AUREL STUDIO — design tokens
+   Editorial minimalism: warm neutrals, no accent colour, no shadows.
+   Depth comes from type scale and whitespace, not from decoration.
+   --------------------------------------------------------------------------- */
+
+@theme {
+  /* Surfaces */
+  --color-bone: #f4f1ea;
+  --color-cream: #fbf9f5;
+  --color-paper: #ffffff;
+  --color-sand: #e7e1d4;
+
+  /* Ink */
+  --color-ink: #17160f;
+  --color-graphite: #2b2922;
+  /* Secondary and tertiary text are tuned to clear WCAG AA on bone (6.1:1 and 4.8:1).
+     The earlier, lighter "mist" looked refined and failed at 2.3:1 — it is gone. */
+  --color-stone: #5f5a4c;
+  --color-mist: #6f6a5d;
+
+  /* Hairlines — the only border this system allows */
+  --color-line: #ddd7ca;
+  --color-line-strong: #c6bfaf;
+
+  /* Type */
+  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), Georgia, "Times New Roman", serif;
+
+  /* Motion — one easing curve for the whole site */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bone);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  /* Uppercase micro-labels: eyebrows, nav, buttons, meta rows. */
+  .label {
+    font-size: 0.6875rem;
+    line-height: 1;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Display serif. Large sizes need negative tracking to read as editorial. */
+  .display {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 0.94;
+    text-wrap: balance;
+  }
+
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* One grade for every photograph. The sources are shot differently — this
+     pulls them toward the same warm-neutral register without washing them out. */
+  .photo {
+    filter: saturate(0.92) contrast(1.03) brightness(1.01);
+  }
+
+  /* Scroll reveal: hidden only once JS opts in, so no-JS keeps the content. */
+  [data-reveal="pending"] {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  [data-reveal="shown"] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.9s var(--ease-editorial),
+      transform 0.9s var(--ease-editorial);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-reveal="pending"] {
+    opacity: 1;
+    transform: none;
+  }
+}
