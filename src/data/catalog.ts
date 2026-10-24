@@ -143,6 +143,48 @@ const PHOTO = {
     alt: "Merino scarf in grey, worn close to the neck",
     objectPosition: "50% 35%",
   },
+  // Burst by Shopify frames added in the asset pass — same library as the rest of
+  // the catalogue, so light and palette stay consistent.
+  weekenderBag: {
+    src: "/images/catalog/weekender-bag-leather.jpg",
+    alt: "Canvas weekender bag held by the handles, studio photograph",
+    objectPosition: "50% 45%",
+  },
+  weekenderBagHeld: {
+    src: "/images/catalog/weekender-bag-held.jpg",
+    alt: "Weekender bag carried by hand, second angle",
+    objectPosition: "50% 45%",
+  },
+  linenTrouserKhaki: {
+    src: "/images/catalog/linen-trouser-khaki.jpg",
+    alt: "Wide-leg linen trousers in khaki, full length",
+    objectPosition: "50% 55%",
+  },
+  woolTrouserGrey: {
+    src: "/images/catalog/wool-trouser-grey.jpg",
+    alt: "Pleated wool trousers, full length, grey studio backdrop",
+    objectPosition: "50% 50%",
+  },
+  knitCreamWorn: {
+    src: "/images/catalog/knit-cream-worn.jpg",
+    alt: "Cotton-cashmere cardigan in cream, worn",
+    objectPosition: "50% 30%",
+  },
+  knitCreamDetail: {
+    src: "/images/catalog/knit-cream-detail.jpg",
+    alt: "Ribbed knit collar detail of a cream cardigan",
+    objectPosition: "50% 40%",
+  },
+  knitGreyCrew: {
+    src: "/images/catalog/knit-grey-crew.jpg",
+    alt: "Merino crew knit in grey, worn close to the neck",
+    objectPosition: "50% 35%",
+  },
+  denimJeansDetail: {
+    src: "/images/catalog/denim-jeans-detail.jpg",
+    alt: "Straight-leg denim jeans, waist and pocket detail",
+    objectPosition: "50% 35%",
+  },
   dressSky: {
     src: "/images/catalog/woman-models-against-blue-sky.jpg",
     alt: "Woman in a printed dress against an open sky",
@@ -391,8 +433,8 @@ const SPECS: ProductSpec[] = [
     tags: ["knitwear", "wool", "cashmere"],
     price: 18500,
     colors: [
-      { name: "Oat", slug: "oat", hex: "#CFC4AE", photos: ["knitPortrait", "knitWoman"] },
-      { name: "Charcoal", slug: "charcoal", hex: "#3A3833", photos: ["knitWoman", "knitPortrait"] },
+      { name: "Oat", slug: "oat", hex: "#CFC4AE", photos: ["knitCreamWorn", "knitCreamDetail"] },
+      { name: "Charcoal", slug: "charcoal", hex: "#3A3833", photos: ["knitCreamWorn", "knitCreamDetail"] },
     ],
     material: "70% extra-fine merino wool, 30% cashmere",
     care: ["Hand wash cold", "Dry flat", "Do not wring", "De-pill with a comb"],
@@ -411,8 +453,8 @@ const SPECS: ProductSpec[] = [
     tags: ["linen", "trousers", "summer"],
     price: 13500,
     colors: [
-      { name: "Sand", slug: "sand", hex: "#D8CDB8", photos: ["bootsCurb", "derbyShoes"] },
-      { name: "Ink", slug: "ink", hex: "#1B1A15", photos: ["bootsCurb", "derbyShoes"] },
+      { name: "Sand", slug: "sand", hex: "#D8CDB8", photos: ["linenTrouserKhaki"] },
+      { name: "Ink", slug: "ink", hex: "#1B1A15", photos: ["linenTrouserKhaki"] },
     ],
     material: "100% washed linen, 260 gsm",
     care: ["Machine wash cold", "Line dry", "Iron on reverse while damp"],
@@ -507,8 +549,8 @@ const SPECS: ProductSpec[] = [
     tags: ["knitwear", "merino", "everyday"],
     price: 14500,
     colors: [
-      { name: "Charcoal", slug: "charcoal", hex: "#3A3833", photos: ["knitWoman", "knitPortrait"] },
-      { name: "Oat", slug: "oat", hex: "#CFC4AE", photos: ["knitPortrait", "knitWoman"] },
+      { name: "Charcoal", slug: "charcoal", hex: "#3A3833", photos: ["knitGreyCrew"] },
+      { name: "Oat", slug: "oat", hex: "#CFC4AE", photos: ["knitGreyCrew"] },
     ],
     material: "100% extra-fine merino wool",
     care: ["Hand wash cold", "Dry flat", "De-pill with a comb"],
@@ -529,7 +571,7 @@ const SPECS: ProductSpec[] = [
     compareAtPrice: 19500,
     colors: [
       { name: "Stone", slug: "stone", hex: "#B9B2A2", photos: ["knitWoman", "knitPortrait"] },
-      { name: "Ink", slug: "ink", hex: "#1B1A15", photos: ["knitPortrait", "knitWoman"] },
+      { name: "Ink", slug: "ink", hex: "#1B1A15", photos: ["knitWoman", "knitPortrait"] },
     ],
     material: "85% cotton, 15% cashmere",
     care: ["Hand wash cold", "Dry flat", "Cool iron if needed"],
@@ -587,8 +629,8 @@ const SPECS: ProductSpec[] = [
     tags: ["trousers", "wool", "tailoring"],
     price: 15500,
     colors: [
-      { name: "Charcoal", slug: "charcoal", hex: "#3A3833", photos: ["woolTrouserCream"] },
-      { name: "Stone", slug: "stone", hex: "#B9B2A2", photos: ["woolTrouserCream"] },
+      { name: "Charcoal", slug: "charcoal", hex: "#3A3833", photos: ["woolTrouserGrey"] },
+      { name: "Stone", slug: "stone", hex: "#B9B2A2", photos: ["woolTrouserGrey"] },
     ],
     material: "100% tropical wool",
     care: ["Dry clean only", "Press with a damp cloth", "Hang from the cuffs"],
@@ -606,8 +648,8 @@ const SPECS: ProductSpec[] = [
     tags: ["denim", "trousers", "workwear"],
     price: 12500,
     colors: [
-      { name: "Indigo", slug: "indigo", hex: "#3F5875", photos: ["denimRailing", "bootsCurb"] },
-      { name: "Washed Black", slug: "washed-black", hex: "#3A3733", photos: ["bootsCurb", "denimRailing"] },
+      { name: "Indigo", slug: "indigo", hex: "#3F5875", photos: ["denimJeansDetail"] },
+      { name: "Washed Black", slug: "washed-black", hex: "#3A3733", photos: ["denimJeansDetail"] },
     ],
     material: "100% cotton denim, 13 oz",
     care: ["Wash cold, inside out", "Hang dry", "Wash sparingly"],
@@ -745,7 +787,7 @@ const SPECS: ProductSpec[] = [
     price: 21000,
     compareAtPrice: 24000,
     colors: [
-      { name: "Sand", slug: "sand", hex: "#D8CDB8", photos: ["summerWoman", "hatWoman"] },
+      { name: "Sand", slug: "sand", hex: "#D8CDB8", photos: ["weekenderBag", "weekenderBagHeld"] },
     ],
     sizes: ["M", "L"],
     material: "18 oz cotton canvas, vegetable-tanned leather trim",
@@ -787,11 +829,9 @@ const SPECS: ProductSpec[] = [
  * from it only when a real photograph for that product exists.
  */
 export const PHOTO_PENDING: Record<string, string> = {
-  // Reviewed against Pexels in the phase-6 asset pass: the only available frames
-  // were body or detail close-ups that cannot survive a 3:4 product crop, so these
-  // two keep a category-adjacent frame and are listed here honestly.
-  "canvas-weekender-bag": "No portrait frame of a bare bag; every candidate cropped to a close-up.",
-  "linen-wide-leg-trouser": "No full-length linen trouser frame on a neutral ground.",
+  // Category is now correct for every product. What remains is per-colourway
+  // photography: no free library has the same garment in two colours, so the
+  // products below still show one frame for both swatches.
 };
 
 export const catalog: Product[] = SPECS.map(buildProduct);

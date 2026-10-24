@@ -53,3 +53,30 @@ Downloaded, viewed in a contact sheet, and not used:
 | 10947222 | Scarf in snow — subject buried under winter styling |
 | 15490507 | Knit hat portrait — a face shot, not a garment frame |
 | 11630887 | Blue knit cap — blue is off-palette |
+
+---
+
+# Round 2 — Burst by Shopify frames (2026-10-24)
+
+Licence: Burst free licence (https://www.burst.shopify.com/licence) — free for commercial and
+non-commercial use, no attribution required. Same library as the rest of the catalogue.
+Downloaded from `burst.shopifycdn.com/photos/<slug>.jpg?width=1200&format=pjpg`; no grading,
+no upscaling.
+
+| Local file | Product | Burst slug | Source page | Representative? |
+|---|---|---|---|---|
+| `weekender-bag-leather.jpg` | Canvas Weekender Bag (primary) | `man-clutching-his-leather-duffle-bag` | /stock-photos/photos/man-clutching-his-leather-duffle-bag | **Yes** — leather duffel, product is canvas |
+| `weekender-bag-held.jpg` | Canvas Weekender Bag (gallery) | `man-holding-his-leather-travel-bag` | /stock-photos/photos/man-holding-his-leather-travel-bag | **Yes** — same caveat |
+| `linen-trouser-khaki.jpg` | Linen Wide-Leg Trouser | `a-model-in-khaki-trousers-and-a-striped-t-shirt` | /stock-photos/photos/a-model-in-khaki-trousers-and-a-striped-t-shirt | **Yes** — khaki for the Stone colourway |
+| `wool-trouser-grey.jpg` | Pleated Wool Trouser | `a-model-in-summer-fashion-with-grey-backdrop` | /stock-photos/photos/a-model-in-summer-fashion-with-grey-backdrop | **Yes** — same outfit as the linen frame |
+| `knit-cream-worn.jpg` | Wool-Cashmere Cardigan | `close-up-of-model-wearing-cream-sweater` | /stock-photos/photos/close-up-of-model-wearing-cream-sweater | **Yes** — Oat colourway |
+| `knit-cream-detail.jpg` | Wool-Cashmere Cardigan (gallery) | `close-up-showing-detail-of-cream-sweater` | /stock-photos/photos/close-up-showing-detail-of-cream-sweater | **Yes** |
+| `knit-grey-crew.jpg` | Merino Crew Knit | `persons-torso-and-neck-in-a-grey-sweater` | /stock-photos/photos/persons-torso-and-neck-in-a-grey-sweater | **Yes** |
+| `denim-jeans-detail.jpg` | Straight-Leg Denim | `person-holding-their-hands-in-jean-pockets` | /stock-photos/photos/person-holding-their-hands-in-jean-pockets | **Yes** |
+
+Rejected this round after viewing: `casual-urban-mens-fashion-jeans` (graffiti wall),
+`woman-wearing-grey-and-green-sweater` (off-palette green), `model-wearing-a-wooly-sweater-
+leans-against-a-railing` (printed knit dress, not a plain sweater),
+`woman-in-grey-sweater-smiles-and-leans-against-a-railing` (same dress),
+`grey-sweater-and-outerwear` (jacket dominates), `persons-hands-hold-the-collar-of-their-
+sweater` (garment not readable).
