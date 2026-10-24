@@ -132,9 +132,9 @@ describe("photography shows the product", () => {
   // Only categories the title names outright. A "Wool Overcoat" is not asserted
   // to show a coat close-up, but a "Bag" must actually contain a bag.
   const CATEGORY_RULES: Array<{ title: RegExp; alt: RegExp }> = [
-    { title: /Bag/i, alt: /\b(bag|tote|weekender)\b/i },
-    { title: /Trouser/i, alt: /\b(trouser|jean|denim)\b/i },
-    { title: /Hat|Beanie/i, alt: /\b(hat|beanie|cap)\b/i },
+    { title: /Bag/i, alt: /\b(bags?|tote|weekender)\b/i },
+    { title: /Trouser/i, alt: /\b(trousers?|jeans?|denim)\b/i },
+    { title: /Hat|Beanie/i, alt: /\b(hats?|beanie|cap)\b/i },
     { title: /Scarf/i, alt: /\bscarf\b/i },
     { title: /Boot|Derby/i, alt: /\b(boots?|shoes?|derby)\b/i },
     { title: /Dress/i, alt: /\bdress\b/i },

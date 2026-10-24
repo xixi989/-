@@ -25,3 +25,11 @@ Keep the same filename and a 3:4 portrait crop for product and collection slots;
 the hero tolerates any landscape-ish ratio because it is `object-cover` with an
 explicit focal point (`objectPosition` in `src/data/products.ts`, or the inline
 style in `hero.tsx` / `editorial-band.tsx`).
+
+## Added in the phase-6 asset pass (2026-10-24)
+
+Four product frames come from **Pexels** under the
+[Pexels licence](https://www.pexels.com/license/): `knit-beanie-oat.jpg`,
+`knit-beanie-worn.jpg`, `wool-trouser-cream.jpg`, `merino-scarf-grey.jpg`.
+Per-file source pages, photographers, crops and the "representative stock" caveat are recorded
+in [`IMAGE_ASSET_MANIFEST.md`](../../IMAGE_ASSET_MANIFEST.md) at the repository root.

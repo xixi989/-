@@ -121,6 +121,28 @@ const PHOTO = {
     alt: "Woman in a straw hat and denim top",
     objectPosition: "50% 25%",
   },
+  // Pexels photography added in the asset pass. Each alt names the category so the
+  // catalogue test can hold the mapping to the same standard as the Burst frames.
+  knitBeanieOat: {
+    src: "/images/catalog/knit-beanie-oat.jpg",
+    alt: "Ribbed knit beanie in oat, close-up",
+    objectPosition: "50% 40%",
+  },
+  knitBeanieWorn: {
+    src: "/images/catalog/knit-beanie-worn.jpg",
+    alt: "Knitted beanie worn on a city street",
+    objectPosition: "50% 25%",
+  },
+  woolTrouserCream: {
+    src: "/images/catalog/wool-trouser-cream.jpg",
+    alt: "Tailored wide-leg trousers in cream, studio photograph",
+    objectPosition: "50% 45%",
+  },
+  merinoScarf: {
+    src: "/images/catalog/merino-scarf-grey.jpg",
+    alt: "Merino scarf in grey, worn close to the neck",
+    objectPosition: "50% 35%",
+  },
   dressSky: {
     src: "/images/catalog/woman-models-against-blue-sky.jpg",
     alt: "Woman in a printed dress against an open sky",
@@ -389,8 +411,8 @@ const SPECS: ProductSpec[] = [
     tags: ["linen", "trousers", "summer"],
     price: 13500,
     colors: [
-      { name: "Sand", slug: "sand", hex: "#D8CDB8", photos: ["bootsCurb", "denimWoman"] },
-      { name: "Ink", slug: "ink", hex: "#1B1A15", photos: ["denimWoman", "bootsCurb"] },
+      { name: "Sand", slug: "sand", hex: "#D8CDB8", photos: ["bootsCurb", "derbyShoes"] },
+      { name: "Ink", slug: "ink", hex: "#1B1A15", photos: ["bootsCurb", "derbyShoes"] },
     ],
     material: "100% washed linen, 260 gsm",
     care: ["Machine wash cold", "Line dry", "Iron on reverse while damp"],
@@ -565,8 +587,8 @@ const SPECS: ProductSpec[] = [
     tags: ["trousers", "wool", "tailoring"],
     price: 15500,
     colors: [
-      { name: "Charcoal", slug: "charcoal", hex: "#3A3833", photos: ["bootsCurb", "derbyShoes"] },
-      { name: "Stone", slug: "stone", hex: "#B9B2A2", photos: ["derbyShoes", "bootsCurb"] },
+      { name: "Charcoal", slug: "charcoal", hex: "#3A3833", photos: ["woolTrouserCream"] },
+      { name: "Stone", slug: "stone", hex: "#B9B2A2", photos: ["woolTrouserCream"] },
     ],
     material: "100% tropical wool",
     care: ["Dry clean only", "Press with a damp cloth", "Hang from the cuffs"],
@@ -703,8 +725,8 @@ const SPECS: ProductSpec[] = [
     tags: ["hat", "wool", "winter"],
     price: 4800,
     colors: [
-      { name: "Charcoal", slug: "charcoal", hex: "#3A3833", photos: ["hatWoman", "knitWoman"] },
-      { name: "Oat", slug: "oat", hex: "#CFC4AE", photos: ["knitWoman", "hatWoman"] },
+      { name: "Charcoal", slug: "charcoal", hex: "#3A3833", photos: ["knitBeanieOat", "knitBeanieWorn"] },
+      { name: "Oat", slug: "oat", hex: "#CFC4AE", photos: ["knitBeanieOat", "knitBeanieWorn"] },
     ],
     sizes: ["S", "M"],
     material: "100% lambswool",
@@ -741,8 +763,8 @@ const SPECS: ProductSpec[] = [
     tags: ["scarf", "merino", "winter"],
     price: 8500,
     colors: [
-      { name: "Bone", slug: "bone", hex: "#EDE8DE", photos: ["knitPortrait", "winterCoat"] },
-      { name: "Graphite", slug: "graphite", hex: "#4A4741", photos: ["winterCoat", "knitPortrait"] },
+      { name: "Bone", slug: "bone", hex: "#EDE8DE", photos: ["merinoScarf"] },
+      { name: "Graphite", slug: "graphite", hex: "#4A4741", photos: ["merinoScarf"] },
     ],
     sizes: ["M"],
     material: "100% brushed merino wool",
@@ -765,11 +787,11 @@ const SPECS: ProductSpec[] = [
  * from it only when a real photograph for that product exists.
  */
 export const PHOTO_PENDING: Record<string, string> = {
-  "canvas-weekender-bag": "Needs a bag frame; the current images show a person, no bag.",
-  "linen-wide-leg-trouser": "Needs a linen trouser frame; current frames show denim and boots.",
-  "pleated-wool-trouser": "Needs a tailored wool trouser frame; current frames show jeans and footwear.",
-  "ribbed-wool-beanie": "Needs a knit beanie frame; the current frame is a wide-brim felt hat.",
-  "merino-scarf": "Needs a scarf frame; the current frame is a studio portrait.",
+  // Reviewed against Pexels in the phase-6 asset pass: the only available frames
+  // were body or detail close-ups that cannot survive a 3:4 product crop, so these
+  // two keep a category-adjacent frame and are listed here honestly.
+  "canvas-weekender-bag": "No portrait frame of a bare bag; every candidate cropped to a close-up.",
+  "linen-wide-leg-trouser": "No full-length linen trouser frame on a neutral ground.",
 };
 
 export const catalog: Product[] = SPECS.map(buildProduct);
