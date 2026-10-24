@@ -3,6 +3,8 @@
 A modern essentials clothing brand storefront — headless-commerce architecture, editorial
 art direction. Built as a portfolio project for front-end / cross-border DTC roles.
 
+**Live URL:** none yet — `READY TO DEPLOY`, not deployed. See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md).
+
 **Phase 4 (this commit): cross-border presentation and technical SEO** — display currency,
 region selector, English/German interface, metadata, JSON-LD, sitemap and robots. Payment
 and real multi-currency settlement are still out of scope; see [Roadmap](#roadmap).
