@@ -9,6 +9,17 @@ and real multi-currency settlement are still out of scope; see [Roadmap](#roadma
 
 ---
 
+## Screenshots
+
+| | |
+|---|---|
+| ![Home](docs/portfolio/screenshots/01-home-desktop.png) | ![Collection](docs/portfolio/screenshots/03-collection-desktop.png) |
+| ![Product](docs/portfolio/screenshots/04-product-desktop.png) | ![Cart](docs/portfolio/screenshots/05-cart-desktop.png) |
+
+More in [`docs/portfolio/screenshots/`](docs/portfolio/screenshots) — including the German
+interface, GBP display and mobile views. Captured from the production build by
+`node scripts/screenshots.mjs`.
+
 ## Stack
 
 | Layer | Choice |
@@ -34,8 +45,14 @@ npm run build      # production build
 npm start
 npm run typecheck  # tsc --noEmit
 npm run lint       # eslint --max-warnings=0
-npm test           # vitest run
+npm test           # vitest run — 116 unit tests
+npm run e2e        # playwright test — 34 E2E tests (reuses system Edge)
+npm run e2e:desktop # desktop project only
 ```
+
+E2E runs against the production build: Playwright starts `next start` on port 3400 itself.
+On a machine without Edge, change `channel: "msedge"` to `"chromium"` in
+`playwright.config.ts` and run `npx playwright install chromium`.
 
 ### Environment
 
@@ -162,6 +179,18 @@ JSON-LD stays in USD and nothing overflows at 375px.
   contradictory robots tags *were* fixed: it now emits a single `noindex`.
 - **Photography** is free stock (Burst by Shopify), disclosed in `public/images/CREDITS.md`.
 - **Footer info pages** (`/shipping`, `/faq`, …) are linked but not built.
+
+## Documents
+
+| File | What it covers |
+|---|---|
+| [PORTFOLIO_CASE_STUDY.md](PORTFOLIO_CASE_STUDY.md) | Architecture, features, honest boundaries |
+| [INTERVIEW_GUIDE.md](INTERVIEW_GUIDE.md) | 30 s / 1 min / 3 min scripts, résumé versions, Q&A |
+| [PERFORMANCE_REPORT.md](PERFORMANCE_REPORT.md) | Lighthouse before/after, byte budgets, NOT TESTED items |
+| [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) | Vercel + GitHub steps, env matrix, verification checklist |
+| [PHASE5_FINAL_REPORT.md](PHASE5_FINAL_REPORT.md) | Phase 5 outcome and open issues |
+| [QA_AUDIT_REPORT.md](QA_AUDIT_REPORT.md) · [PRODUCT_IMAGE_AUDIT.md](PRODUCT_IMAGE_AUDIT.md) | External audit, image gap list |
+| [DESIGN.md](DESIGN.md) | Tokens, type scale, motion, six bans |
 
 ## Roadmap
 

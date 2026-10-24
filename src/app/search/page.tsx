@@ -117,6 +117,12 @@ async function SearchResults({ searchParams }: PageProps) {
             />
 
             <div className="mt-8">
+              {/* Same outline fix as the collection page: h1 -> h2 -> card h3. */}
+              <h2 className="sr-only">Results</h2>
+              {/* Same outline fix as the collection page: h1 -> h2 -> card h3. */}
+              <h2 className="sr-only">Results</h2>
+              {/* Same outline fix as the collection page: h1 -> h2 -> card h3. */}
+              <h2 className="sr-only">Results</h2>
               {visible.length > 0 ? (
                 <ProductGrid products={visible.map(toSummary)} />
               ) : (

@@ -69,10 +69,8 @@ export const metadata: Metadata = {
     description: site.description,
     images: [site.defaultOgImage],
   },
-  icons: {
-    icon: [{ url: "/favicon.ico", sizes: "any" }],
-    shortcut: "/favicon.ico",
-  },
+  // Icons come from the file convention (src/app/icon.svg); the old absolute
+  // /favicon.ico reference 404d on every page.
 };
 
 export default function RootLayout({

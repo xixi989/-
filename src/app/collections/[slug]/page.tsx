@@ -146,6 +146,9 @@ export default async function CollectionPage({ params, searchParams }: PageProps
             />
 
             <div className="mt-8">
+              {/* The grid's cards are h3, so the outline needs an h2 between the
+                  page h1 and them. Visually hidden — the heading is redundant here. */}
+              <h2 className="sr-only">Products</h2>
               {visible.length > 0 ? (
                 <ProductGrid products={visible.map(toSummary)} />
               ) : (

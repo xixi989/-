@@ -12,6 +12,7 @@ export function Hero() {
           alt="Model wearing the Autumn Winter 2026 white cotton tee and shorts in daylight"
           fill
           priority
+          quality={72}
           sizes="100vw"
           className="photo object-cover"
           style={{ objectPosition: "58% 26%" }}

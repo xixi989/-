@@ -34,7 +34,9 @@ export function WishlistView() {
     return (
       <div className="max-w-[52ch] py-10 md:py-16">
         <h1 className="display text-[clamp(2rem,4.5vw,3.25rem)] text-ink">{t("wishlist.title")}</h1>
-        <p className="mt-6 text-[0.9rem] leading-relaxed text-stone">
+        {/* The empty state leads with its own line, then explains what to do. */}
+        <p className="display mt-6 text-[1.15rem] text-ink">{t("wishlist.empty")}</p>
+        <p className="mt-3 text-[0.9rem] leading-relaxed text-stone">
           {t("wishlist.emptyBody")}
         </p>
         <Link
